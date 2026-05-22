@@ -1,4 +1,4 @@
-# FYP-1 Algorithm Suite — Emergency Response USV
+# FYP-1 Algorithm Suite — Crowd Geofencing Anomaly Detection
 
 > **Final Year Project 1 (FYP-1)**
 > Autonomous Unmanned Surface Vehicle (USV) for Flood Zone Emergency Response
