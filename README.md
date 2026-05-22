@@ -1,16 +1,16 @@
-# FYP-1 Algorithm Suite — Crowd Geofencing Anomaly Detection
+# FYP-1 Algorithm Suite — Sensor Fusion for Crowd Geofencing Anomaly Detection
 
 > **Final Year Project 1 (FYP-1)**
-> Sensor Fusion For Crowd Geofencing Anomaly Detection
+> Sensor Fusion for Crowd Geofencing Anomaly Detection
 > Language: Python 3
 
 ---
 
 ## Overview
 
-This repository contains the core algorithm pipeline developed for an autonomous emergency response USV designed to operate in flood zones. The system fuses GPS and IMU sensor data, detects motion anomalies using machine learning, enforces geofence boundaries, and generates tiered alert levels for situational awareness.
+This repository contains the core algorithm pipeline developed for **Sensor Fusion for Crowd Geofencing Anomaly Detection**. The system fuses GPS and IMU sensor data using an Extended Kalman Filter (EKF), applies unsupervised machine learning to detect abnormal motion patterns, enforces geofence boundaries using spatial analysis, and generates tiered alert levels for real-time situational awareness.
 
-The pipeline is structured as four modular Python scripts that work in sequence to process raw sensor data and produce a final alert output.
+The pipeline is structured as five modular Python scripts that work in sequence — from raw sensor ingestion through to final alert classification output.
 
 ---
 
@@ -56,7 +56,7 @@ Fuses raw GPS and IMU (accelerometer) data into a single, noise-reduced position
 
 ### 2. `train_anomaly_detection.py` — Isolation Forest Training
 
-Trains an unsupervised machine learning model to learn normal USV motion patterns from EKF-processed data.
+Trains an unsupervised machine learning model to learn normal crowd motion patterns from EKF-processed data.
 
 **Input:**
 - `ekf_output.csv` — Output from EKF fusion
@@ -95,14 +95,14 @@ Loads the trained Isolation Forest model and provides a callable function for pe
 
 ### 4. `geofence.py` — Geofence Boundary Check
 
-Implements a point-in-polygon algorithm to determine whether the USV is operating within its defined safe operational area.
+Implements a point-in-polygon algorithm to determine whether a tracked entity (person or device) is operating within the defined geofence boundary — the crowd monitoring zone.
 
 **Input:**
 - `geofence_boundary.geojson` — A GeoJSON file defining the allowed operational polygon
 
 **Algorithm:**
 - Ray casting method for robust point-in-polygon testing
-- Returns `True` (breach detected) if the fused GPS position is **outside** the geofence
+- Returns `True` (breach detected) if the fused GPS position is **outside** the defined crowd geofence zone
 
 ---
 
@@ -133,9 +133,9 @@ The following data files are **not included** in this repository and must be pre
 
 | File | Description |
 |------|-------------|
-| `Accel.csv` | IMU accelerometer data from the USV |
-| `gps_data.csv` | GPS coordinates logged during operation |
-| `geofence_boundary.geojson` | GeoJSON polygon defining the safe operational zone |
+| `Accel.csv` | IMU accelerometer data from the tracked entity/device |
+| `gps_data.csv` | GPS coordinates logged during data collection |
+| `geofence_boundary.geojson` | GeoJSON polygon defining the crowd monitoring zone |
 
 ---
 
@@ -177,7 +177,7 @@ The final output will be saved as `final_alert_output.csv`.
 
 ## Project Context
 
-This algorithm suite was developed as part of **FYP-1** for an Integrated Design Project (IDP) focused on autonomous flood zone emergency response. The USV platform uses a **Pixhawk flight controller** with GPS/IMU hardware, and mission planning is handled via **QGroundControl** with autonomous waypoint navigation.
+This algorithm suite was developed as part of **FYP-1** with the research topic **"Sensor Fusion for Crowd Geofencing Anomaly Detection"**. The project combines Extended Kalman Filter-based sensor fusion (GPS + IMU) with an Isolation Forest machine learning model to detect anomalous crowd behaviour and geofence violations in real time. The system is designed to improve situational awareness in crowd monitoring scenarios by providing automated, tiered alert outputs.
 
 ---
 
