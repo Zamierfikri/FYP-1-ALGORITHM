@@ -1,8 +1,8 @@
 # FYP-1 Algorithm Suite — Crowd Geofencing Anomaly Detection
 
 > **Final Year Project 1 (FYP-1)**
-> Autonomous Unmanned Surface Vehicle (USV) for Flood Zone Emergency Response
-> Platform: Pixhawk-based USV | Language: Python 3
+> Sensor Fusion For Crowd Geofencing Anomaly Detection
+> Language: Python 3
 
 ---
 
